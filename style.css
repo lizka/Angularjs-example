@@ -1,0 +1,17 @@
+.inline{
+  display: inline-block;
+}
+
+.gold{
+  background: gold;
+}
+
+.beauty{
+  padding: 10px;
+  text-align: center;
+}
+
+
+.tall{
+  height: 500px;
+}

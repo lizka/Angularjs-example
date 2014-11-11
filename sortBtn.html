@@ -1,0 +1,7 @@
+ <button class="btn btn-xs btn-default" ng-class="{'btn-success' : sorting.by === value}" ng-click="sorting.by = value; sorting.desc = !sorting.desc">
+                    {{value}}
+           <span ng-show="sorting.by === value">
+              <span ng-show="!sorting.desc" class="glyphicon glyphicon-chevron-up"></span>
+              <span ng-show="sorting.desc" class="glyphicon glyphicon-chevron-down"></span>
+          </span>
+        </button>
