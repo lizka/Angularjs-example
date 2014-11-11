@@ -1,1 +1,71 @@
-tup
+<!DOCTYPE html>
+<html ng-app="lizkaApp">
+  <head>
+    <meta charset="utf-8">
+    <title>AngularJS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+  </head>
+  <body>
+  
+  <div class="container" role="main" ng-controller="MyFirstCtrl">
+        
+    <h1>Devmeeting AngularJS</h1>
+    <div class="row">
+      <div class="col-sm-12">
+     
+     <sort-btn value="price" sorting="sorting"></sort-btn>
+     <sort-btn value="name" sorting="sorting"></sort-btn>
+         <div class="dropdown inline" ng-click="isOpen = !isOpen" ng-class="{'open' : isOpen}">
+            <button class="btn btn-xs btn-default" type="button" id="dropdownMenu1" data-toggle="dropdown">
+              Sorting
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#" ng-click="sortBy('name', true);">Name - desc</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#" ng-click="sortBy('name', false);">Name - asc</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#" ng-click="sortBy('price', true);">Price - desc</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#" ng-click="sortBy('price', false);">Price - asc</a></li>
+            </ul>
+          </div>
+          <button class="btn btn-xs btn-default" ng-click="hideSpecial = !hideSpecial" >
+                   Hide / Show special offers
+        </button>
+         </div>
+         <div class="col-sm-12">
+          <div class="input-group">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </span>
+                    <input type="text" class="form-control" ng-model="filtering.search">
+                </div>
+           </div>
+        </div>
+        <div class="row"> 
+          <div class="col-sm-12">
+        <div class="col-md-4 tall">
+        
+          <div class="list-group">
+            <div class="list-group-item" ng-repeat="item in basket">
+                <span class="label label-info">{{ item.price | currency }}</span>
+                <span >{{ item.name }}</span>
+            </div>
+            <span> Total : {{total.total | currency}}</span>
+          </div>
+        </div>
+           <div class="col-md-4 beauty" 
+           
+           ng-repeat="tile in products = ( tiles | filter:filtering.search: filtering.strict | orderBy: sorting.by  : sorting.desc | orderBy: 'special')" >
+            
+              <product basket="basket" total='total' tile='tile' filtering='filtering' hide-special='hideSpecial'></product>
+              
+          </div>
+          </div>
+    </div>
+  </div>
+    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
