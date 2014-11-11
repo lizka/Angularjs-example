@@ -1,0 +1,13 @@
+ <div ng-class="{ 'gold' : tile.special}"  ng-init="limit = 15" ng-hide="hideSpecial && tile.special" >
+    <img src="http://lorempixel.com/400/200/sports" />
+          <p>{{ tile.name }}</p> 
+          <button ng-repeat="tag in tile.tags" ng-click="tagSearching(tag.name);" class="label label-warning">{{tag.name}}</button>
+          <p >{{tile.description | limitTo: limit}}</p> 
+          <button ng-hide="isLong" class="btn btn-xs btn-default" 
+          ng-click="limit = tile.description.length; isLong=true">Expand text</button>
+          <button ng-show="isLong" class="btn btn-xs btn-default" 
+          ng-click="limit = 15; isLong=false">Collapse text</button>
+           <input type="checkbox" ng-click="addToBasket();" ng-model="isChecked">
+            Buy
+          <span class="label label-info"> {{ tile.price | currency }}</span>
+ </div>
